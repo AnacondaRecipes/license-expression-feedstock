@@ -36,6 +36,7 @@ test:
 about:
   home: https://github.com/nexB/license-expression
   license: Apache-2.0
+  license_family: Apache
   license_file:
     - NOTICE
     - apache-2.0.LICENSE
