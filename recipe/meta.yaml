@@ -11,17 +11,15 @@ source:
 
 build:
   number: 0
-  noarch: python
   script: "{{ PYTHON }} -m pip install . --no-deps -vv"
 
 requirements:
-  build:
-    - setuptools >=50
-    - setuptools_scm >=6
-    - wheel
   host:
     - pip
     - python
+    - setuptools >=50
+    - setuptools_scm >=6
+    - wheel
   run:
     - boolean.py >=4.0
     - python
