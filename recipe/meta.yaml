@@ -20,6 +20,7 @@ requirements:
     - python
     - setuptools >=50
     - setuptools_scm >=6
+    - toml
     - wheel
   run:
     - boolean.py >=4.0
