@@ -1,5 +1,5 @@
-{% set version = "1.2" %}
-{% set sha256 = "7960e1dfdf20d127e75ead931476f2b5c7556df05b117a73880b22ade17d1abc" %}
+{% set version = "30.0.0" %}
+{% set sha256 = "ad638292aa8493f84354909b517922cb823582c2ce2c4d880e42544a86bea8dd" %}
 
 package:
   name: license-expression
@@ -11,24 +11,33 @@ source:
 
 build:
   number: 0
-  noarch: python
+  skip: True  # [py < 36]
   script: "{{ PYTHON }} -m pip install . --no-deps -vv"
 
 requirements:
   host:
     - pip
     - python
+    - setuptools >=50
+    - setuptools_scm >=6
+    - toml
+    - wheel
   run:
-    - boolean.py >=3.6,<4.0.0
+    - boolean.py >=4.0
     - python
 
 test:
+  requires:
+    - pip
   imports:
     - license_expression
+  commands:
+    - pip check
 
 about:
   home: https://github.com/nexB/license-expression
   license: Apache-2.0
+  license_family: Apache
   license_file:
     - NOTICE
     - apache-2.0.LICENSE
