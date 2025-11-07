@@ -1,17 +1,17 @@
-{% set version = "30.3.0" %}
-{% set sha256 = "1295406f736b4f395ff069aec1cebfad53c0fcb3cf57df0f5ec58fc7b905aea5" %}
+{% set name = "license-expression" %}
+{% set version = "30.4.4" %}
 
 package:
-  name: license-expression
+  name: {{ name|lower }}
   version: {{ version }}
 
 source:
-  url: https://pypi.io/packages/source/l/license-expression/license-expression-{{ version }}.tar.gz
-  sha256: {{ sha256 }}
+  url: https://pypi.org/packages/source/{{ name[0] }}/{{ name }}/{{ name|replace("-", "_") }}-{{ version }}.tar.gz
+  sha256: 73448f0aacd8d0808895bdc4b2c8e01a8d67646e4188f887375398c761f340fd
 
 build:
   number: 0
-  skip: True  # [py<38]
+  skip: True  # [py<39]
   script: {{ PYTHON }} -m pip install . --no-deps --no-build-isolation -vv
 
 requirements:
@@ -20,33 +20,38 @@ requirements:
     - python
     - setuptools >=50
     - setuptools_scm >=6
-    - toml
     - wheel
   run:
     - boolean.py >=4.0
     - python
 
 test:
+  source_files:
+    - tests
+    - pyproject.toml
   requires:
     - pip
+    - pytest
   imports:
     - license_expression
   commands:
     - pip check
+    - python -c "from importlib.metadata import version; assert(version('{{ name }}')=='{{ version }}')"
+    - pytest -ra -v --tb=short tests -k "not test_get_license_key_info_vendored"
 
 about:
-  home: https://github.com/nexB/license-expression
+  home: https://github.com/aboutcode-org/license-expression
   license: Apache-2.0
   license_family: Apache
   license_file:
     - NOTICE
     - apache-2.0.LICENSE
-    - src/license_expression/_pyahocorasick.ABOUT
-  summary: >
+    - license-expression.ABOUT
+  summary: |
     license-expression is small utility library to parse, compare, simplify and normalize
     license expressions (such as SPDX license expressions) using boolean logic.
-  doc_url: https://github.com/nexB/license-expression
-  dev_url: https://github.com/nexB/license-expression
+  doc_url: https://github.com/aboutcode-org/license-expression
+  dev_url: https://github.com/aboutcode-org/license-expression
 
 extra:
   recipe-maintainers:
