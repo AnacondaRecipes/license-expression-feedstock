@@ -47,7 +47,9 @@ about:
     - NOTICE
     - apache-2.0.LICENSE
     - license-expression.ABOUT
-  summary: |
+  summary: Utility library to parse, compare, simplify and normalize license expressions
+  description: |
+    An implementation-agnostic implementation of JSON reference resolution.: |
     license-expression is small utility library to parse, compare, simplify and normalize
     license expressions (such as SPDX license expressions) using boolean logic.
   doc_url: https://github.com/aboutcode-org/license-expression
