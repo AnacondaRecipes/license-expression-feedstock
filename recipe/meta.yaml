@@ -46,7 +46,6 @@ about:
   license_file:
     - NOTICE
     - apache-2.0.LICENSE
-    - license-expression.ABOUT
   summary: Utility library to parse, compare, simplify and normalize license expressions
   description: |
     An implementation-agnostic implementation of JSON reference resolution.: |
